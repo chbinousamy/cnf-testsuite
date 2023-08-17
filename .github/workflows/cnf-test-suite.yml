@@ -1,0 +1,39 @@
+name: "Cloud Native Foundation Test Suite"
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '30 0 * * *'
+
+jobs:
+  build:
+    continue-on-error: true
+    strategy:
+      matrix:
+        arch: [amd64, arm, arm64]
+        #defconfig: [tinyconfig, defconfig, allnoconfig, allyesconfig, allmodconfig]
+        defconfig: [tinyconfig]
+        os: [ubuntu-latest]
+        
+    name: "cnf-testsuite"
+    runs-on: ${{ matrix.os }}
+    steps:
+        
+      - name: "run actions/checkout@v3"
+        uses: actions/checkout@v3
+        with:
+          ref: master
+          persist-credentials: false
+          
+      - name: "Install the latest test suite binary"
+        run: ./curl_install.sh)
+
+      - name: "Prepare the cnf-testsuite"
+        run: cnf-testsuite setup
+
+      - name: "Initialize the test suite for using the CNF"
+        run: cnf-testsuite cnf_setup cnf-config=./cnf-testsuite.yml
+
+      - name: "Run all of application/workload tests"
+        run: cnf-testsuite workload
+
