@@ -18,11 +18,12 @@ jobs:
     steps:
 
       - name: "run actions-k3s@master"
-      - uses: debianmaster/actions-k3s@master
+        uses: debianmaster/actions-k3s@master
         id: k3s
         with:
           version: 'latest'
-      - run: |
+      - name: Test on k3s
+        run: |
           kubectl get nodes
           kubectl get pods -A
           sleep 20
