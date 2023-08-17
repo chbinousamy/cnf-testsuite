@@ -20,7 +20,7 @@ jobs:
       - name: "run actions/checkout@v3"
         uses: actions/checkout@v3
         with:
-          ref: master
+          ref: main
           persist-credentials: false
           
       - name: "Install the latest test suite binary"
