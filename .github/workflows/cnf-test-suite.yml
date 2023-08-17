@@ -52,6 +52,6 @@ jobs:
 
       - name: "Run all of application/workload tests"
         run: |
-          KUBECONFIG=~/.kube/config
+          export KUBECONFIG=~/.kube/config
           cnf-testsuite workload
 
