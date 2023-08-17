@@ -17,13 +17,15 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
 
-      - name: "run actions-k3s@master"
-        uses: debianmaster/actions-k3s@master
-        id: k3s
+      - name: "Create Single Cluster"
+        uses: AbsaOSS/k3d-action@v2
         with:
-          version: 'latest'
+          cluster-name: "test-cluster-1"
+          args: --agents 2
+          
       - name: Test on k3s
         run: |
+          kubectl version
           kubectl get nodes
           kubectl get pods -A
           sleep 20
