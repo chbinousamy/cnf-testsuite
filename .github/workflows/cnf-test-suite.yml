@@ -16,7 +16,19 @@ jobs:
     name: "cnf-testsuite"
     runs-on: ${{ matrix.os }}
     steps:
-        
+
+      - name: "run actions-k3s@master"
+      - uses: debianmaster/actions-k3s@master
+        id: k3s
+        with:
+          version: 'latest'
+      - run: |
+          kubectl get nodes
+          kubectl get pods -A
+          sleep 20
+          kubectl get nodes
+          kubectl get pods -A
+    
       - name: "run actions/checkout@v3"
         uses: actions/checkout@v3
         with:
