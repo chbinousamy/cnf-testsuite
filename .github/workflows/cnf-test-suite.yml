@@ -55,3 +55,9 @@ jobs:
           export KUBECONFIG=~/.kube/config
           cnf-testsuite workload
 
+      - name: Archive CNF testsuite results
+        uses: actions/upload-artifact@v3
+        with:
+          name: cnf-test-suite-coverage
+          path: results
+
