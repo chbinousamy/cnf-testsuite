@@ -24,7 +24,9 @@ jobs:
           persist-credentials: false
           
       - name: "Install the latest test suite binary"
-        run: ./curl_install.sh
+        run: |
+          ./curl_install.sh
+          export PATH=$HOME/.cnf-testsuite:$PATH
 
       - name: "Prepare the cnf-testsuite"
         run: cnf-testsuite setup
