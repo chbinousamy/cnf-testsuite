@@ -11,8 +11,6 @@ jobs:
     strategy:
       matrix:
         arch: [amd64, arm, arm64]
-        #defconfig: [tinyconfig, defconfig, allnoconfig, allyesconfig, allmodconfig]
-        defconfig: [tinyconfig]
         os: [ubuntu-latest]
         
     name: "cnf-testsuite"
@@ -26,7 +24,7 @@ jobs:
           persist-credentials: false
           
       - name: "Install the latest test suite binary"
-        run: ./curl_install.sh)
+        run: ./curl_install.sh
 
       - name: "Prepare the cnf-testsuite"
         run: cnf-testsuite setup
