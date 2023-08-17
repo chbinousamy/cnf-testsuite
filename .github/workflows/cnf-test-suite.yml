@@ -25,9 +25,7 @@ jobs:
           
       - name: Test on k3s
         run: |
-          cat ~/.kube/config
-          echo "KUBECONFIG=~/.kube/config"
-          echo "KUBECONFIG=$KUBECONFIG" >> GITHUB_ENV
+          echo "KUBECONFIG=~/.kube/config" >> GITHUB_ENV
           kubectl version
           kubectl get nodes
           kubectl get pods -A
