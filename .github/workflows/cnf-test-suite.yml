@@ -17,7 +17,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
 
-      - name: "Create Single Cluster"
+      - name: "Create Cluster with 1 master, 2 workers"
         uses: AbsaOSS/k3d-action@v2
         with:
           cluster-name: "test-cluster-1"
